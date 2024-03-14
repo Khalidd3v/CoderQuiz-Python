@@ -1,0 +1,14 @@
+{
+    "khalid": {
+        "password": "khalid",
+        "email": "khalid1@email.com"
+    },
+    "sohrab": {
+        "password": "sohrab",
+        "email": "sohrab@email.com"
+    },
+    "hilal": {
+        "password": "hilal",
+        "email": "hilal@email.com"
+    }
+}
