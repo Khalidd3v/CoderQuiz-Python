@@ -1,14 +1,19 @@
+
+# Importing python built-in methods and modules
 import os
 import json
 from datetime import datetime
 import sys
+
+# Impoting functions and methods from python files.
 from .show_result import print_results
 from .quiz_app_handler import start_quiz
-# ANSI escape codes for colors
+
 RED = '\033[91m'
 GREEN = '\033[92m'
 ENDC = '\033[0m'
 
+# This function is saving the result of the user quiz into Json file.
 def save_result(username, language, questions, responses, score):
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     result = {
@@ -28,18 +33,14 @@ def save_result(username, language, questions, responses, score):
         }
         result['results'].append(result_item)
 
-    # Specify the directory where the results will be saved relative to the current working directory
     results_dir = os.path.join("views", "results")
 
-    # Ensure that the results directory exists or create it
     if not os.path.exists(results_dir):
         os.makedirs(results_dir)
 
-    # Construct the full path to the result file
     filename = os.path.join(results_dir, f"{username}_{timestamp}.json")
 
     try:
-        # Write the result to the file
         with open(filename, 'w') as file:
             json.dump(result, file, indent=4)
         print(GREEN + f"Result saved to {filename}" + ENDC)
@@ -51,7 +52,7 @@ def save_result(username, language, questions, responses, score):
                 if take_test == "y":
                     start_quiz(username)
             if re_try == "n":
-                print("\033[92mExiting...\033[0m")  # Green color for "Exiting..."
+                print("\033[92mExiting...\033[0m")
                 sys.exit()
     except Exception as e:
-         print(RED + f"Failed to save result: {e}" + ENDC)
+        print(RED + f"Failed to save result: {e}" + ENDC)
