@@ -22,7 +22,13 @@ def display_quiz(questions):
         for idx, option in enumerate(options):
             print(f"{idx + 1}. {option}")
 
-        user_answer_index = int(input("Your answer (enter the number): ")) - 1
+        while True:
+            user_answer_index = int(input("Your answer (enter the number): ")) - 1
+            if user_answer_index >= 0 and user_answer_index < len(options):
+                break
+            else:
+                print("Error: Please enter a number between 1 and", len(options))
+                
         user_answer = options[user_answer_index]
         correct_answer = answers_dict["correct_answer"]
         responses[question] = {
